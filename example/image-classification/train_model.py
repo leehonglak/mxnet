@@ -48,6 +48,7 @@ def fit(args, network, data_loader):
         mx.gpu(int(i)) for i in args.gpus.split(',')]
 
     epoch_size = args.num_examples / args.batch_size
+    model_args['epoch_size'] = epoch_size
 
     if args.kv_store == 'dist_sync':
         epoch_size /= kv.num_workers
